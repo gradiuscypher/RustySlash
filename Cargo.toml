@@ -1,2 +1,2 @@
 [workspace]
-members = ["world"]
+members = ["world", "webhook_utils"]

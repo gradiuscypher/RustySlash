@@ -1,5 +1,6 @@
 use lambda_http::{handler, lambda, IntoResponse, Request, Context};
 use serde_json::json;
+use webhook_utils;
 
 type Error = Box<dyn std::error::Error + Sync + Send + 'static>;
 
@@ -13,7 +14,7 @@ async fn world(_: Request, _: Context) -> Result<impl IntoResponse, Error> {
     // `serde_json::Values` impl `IntoResponse` by default
     // creating an application/json response
     Ok(json!({
-    "message": "Go Serverless v1.0! Your function executed successfully!"
+    "message": format!("Go Serverless v1.0! Your function executed successfully! {}", webhook_utils::add_one(3)),
     }))
 }
 
